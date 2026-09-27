@@ -1,0 +1,7 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Dashboard</title><link rel="stylesheet" href="/css/global.css"><link rel="stylesheet" href="/css/admin.css"></head>
+<body><header><strong>System Admin Terminal</strong><button id="logout" class="danger">Logout</button></header>
+<main class="container"><section class="card"><h2>Create User</h2><form id="userForm"><input id="username" placeholder="Username" required><input id="fullName" placeholder="Full name" required><input id="email" type="email" placeholder="Email"><input id="password" type="password" placeholder="Temporary password" required><select id="role"><option value="student">Student</option><option value="staff">Staff</option></select><button class="btn">Create Account</button></form><p id="userMsg"></p></section>
+<section class="card"><h2>System Users</h2><div id="users"></div></section>
+<section class="card terminal"><h2>System Audit Stream</h2><pre id="audit"></pre></section></main>
+<script src="/js/api.js"></script><script src="/js/admin.js"></script></body></html>

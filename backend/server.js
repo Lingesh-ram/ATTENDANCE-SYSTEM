@@ -1,0 +1,5 @@
+const path=require("path");require("dotenv").config({path:path.join(__dirname,".env")});const express=require("express");const cors=require("cors");
+const app=express();app.use(cors());app.use(express.json());app.use(express.static(path.join(__dirname,"../frontend")));
+app.use("/api/auth",require("./routes/auth"));app.use("/api/student",require("./routes/students"));app.use("/api/staff",require("./routes/staff"));app.use("/api/attendance",require("./routes/attendance"));app.use("/api/sessions",require("./routes/sessions"));app.use("/api/admin",require("./routes/admin"));
+app.get("/api/health",(req,res)=>res.json({status:"ok"}));app.get("*",(req,res)=>{if(req.path.startsWith("/api/"))return res.status(404).json({message:"API route not found"});res.sendFile(path.join(__dirname,"../frontend/index.html"));});
+const port=process.env.PORT||5000;app.listen(port,()=>console.log(`Attendance system running at http://localhost:${port}`));

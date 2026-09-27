@@ -1,0 +1,4 @@
+requireRole("admin");document.getElementById("logout").onclick=logout;
+async function load(){try{const u=await api("/admin/users");document.getElementById("users").innerHTML=u.users.map(x=>`<div class="user"><b>${x.username}</b> — ${x.full_name} — ${x.role} — ${x.active?"Active":"Disabled"}</div>`).join("");
+const a=await api("/admin/audit-logs");document.getElementById("audit").textContent=a.logs.map(x=>`[${new Date(x.created_at).toLocaleString()}] ${x.actor_username||"system"} | ${x.action} | ${x.details||""}`).join("\\n")||"No audit events."}catch(e){alert(e.message)}}
+document.getElementById("userForm").onsubmit=async e=>{e.preventDefault();try{await api("/admin/users",{method:"POST",body:JSON.stringify({username:username.value,full_name:fullName.value,email:email.value,password:password.value,role:role.value})});userMsg.textContent="Account created.";e.target.reset();load()}catch(e){userMsg.textContent=e.message}};load();setInterval(load,5000);

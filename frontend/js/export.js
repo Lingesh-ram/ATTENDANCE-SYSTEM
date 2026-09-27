@@ -1,0 +1,1 @@
+window.downloadLedger=async()=>{const token=localStorage.getItem("token");const r=await fetch("/api/staff/attendance/export",{headers:{Authorization:"Bearer "+token}});if(!r.ok){alert("Export failed");return}const blob=await r.blob();const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="attendance-ledger.xlsx";a.click();URL.revokeObjectURL(a.href)};

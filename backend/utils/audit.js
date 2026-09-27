@@ -1,0 +1,1 @@
+const db=require("./database");exports.log=async(actorId,action,details="",ip=null)=>{try{await db.execute("INSERT INTO audit_logs(actor_user_id,action,details,ip_address) VALUES(?,?,?,?)",[actorId||null,action,details,ip])}catch(e){console.error("Audit error:",e.message)}};
